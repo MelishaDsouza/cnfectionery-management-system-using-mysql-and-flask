@@ -1,1 +1,1 @@
-# cnfectionery-management-system-using-mysql-and-flask
+# confectionery-management-system-using-mysql-and-flask

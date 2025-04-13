@@ -1,0 +1,87 @@
+/* General Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    background: #fff0f5;
+    padding: 40px;
+    text-align: center;
+    margin: 0;
+}
+
+h1 {
+    color: #c71585;
+    margin-bottom: 30px;
+}
+
+/* Form Container */
+form {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+    max-width: 600px; /* Limit width for large screens */
+    margin: 0 auto; /* Center the form */
+}
+
+label {
+    font-weight: bold;
+    color: #333;
+}
+
+.form_container {
+    margin-bottom: 20px;
+}
+
+/* Input Field Styles */
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box; /* Include padding in the element's total width */
+}
+
+/* Button Styles */
+button {
+    background-color: #c71585;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%; /* Make button full width */
+}
+
+button:hover {
+    background-color: #a0136d;
+}
+
+/* Link Styles */
+a {
+    color: #c71585;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Total Bill (customized style) */
+.total {
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff8e1;
+    border-radius: 8px;
+    text-align: center;
+    color: #d2691e;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}

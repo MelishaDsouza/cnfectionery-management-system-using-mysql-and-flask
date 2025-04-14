@@ -30,12 +30,31 @@
                     <button type="submit">Update</button>
                 </td>
             </form>
+            <form action="/delete-order/{{ order[0] }}" method="POST">
+                <td><button type="submit" onclick="return confirm('Are you sure?')">Delete</button></td>
+            </form>
+        </tr>
+        
+
+        <!-- <tr>
+            <form action="/edit-order/{{ order[0] }}" method="POST">
+                <td>{{ order[0] }}</td>
+                <td><input type="text" name="customer_name" value="{{ order[1] }}"></td>
+                <td><input type="text" name="cake_type" value="{{ order[2] }}"></td>
+                <td><input type="number" name="quantity" value="{{ order[3] }}"></td>
+                <td><input type="number" step="0.01" name="price_per_item" value="{{ order[4] }}"></td>
+                <td>{{ order[5] }}</td>
+                <td>{{ order[6] }}</td>
+                <td>
+                    <button type="submit">Update</button>
+                </td>
+            </form>
             <td>
                 <form action="/delete-order/{{ order[0] }}" method="POST">
                     <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
                 </form>
             </td>
-        </tr>
+        </tr> -->
         {% endfor %}
     </table>
 

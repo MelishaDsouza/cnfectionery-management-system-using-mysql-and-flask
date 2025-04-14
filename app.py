@@ -15,25 +15,63 @@ def add_order():
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    name=request.form['customer_name']
-    cake=request.form['cake_type']
-    qty = int(request.form['quantity'])
-    price = float(request.form['price_per_item'])
-    total = qty * price
+    # Get customer name and item lists
+    customer_name = request.form['customer_name']
+    cake_types = request.form.getlist('cake_type[]')
+    quantities = request.form.getlist('quantity[]')
+    prices = request.form.getlist('price_per_item[]')
+
+    grand_total = 0.0
 
     try:
-        cursor.execute("""
-             INSERT INTO orders (customer_name, cake_type, quantity, price_per_item, total_price)
-             VALUES (%s, %s, %s, %s, %s)
-        """, (name, cake, qty, price, total))
-        conn.commit()
-    except mysql.connector.Error as err:
-         print("MySQL Error:", err)
+        for cake, qty_str, price_str in zip(cake_types, quantities, prices):
+            qty = int(qty_str)
+            price = float(price_str)
+            total = qty * price
+            grand_total += total
 
-    conn.commit()
-    cursor.close()
-    conn.close()
+            cursor.execute("""
+                INSERT INTO orders (customer_name, cake_type, quantity, price_per_item, total_price)
+                VALUES (%s, %s, %s, %s, %s)
+            """, (customer_name, cake, qty, price, total))
+
+        conn.commit()
+        print(f"✅ Order for {customer_name} added. Grand Total: ₹{grand_total:.2f}")
+
+    except mysql.connector.Error as err:
+        print("❌ MySQL Error:", err)
+    finally:
+        cursor.close()
+        conn.close()
+
     return redirect('/orders')
+
+# @app.route('/add-order', methods=['POST'])
+# def add_order():
+#     conn = get_db_connection()
+#     cursor = conn.cursor()
+
+#     name=request.form['customer_name']
+#     cake=request.form['cake_type']
+#     qty = int(request.form['quantity'])
+#     price = float(request.form['price_per_item'])
+#     total = qty * price
+
+#     try:
+
+#         cursor.execute("""
+#              INSERT INTO orders (customer_name, cake_type, quantity, price_per_item, total_price)
+#              VALUES (%s, %s, %s, %s, %s)
+#         """, (name, cake, qty, price, total))
+
+#         conn.commit()
+#     except mysql.connector.Error as err:
+#          print("MySQL Error:", err)
+
+#     conn.commit()
+#     cursor.close()
+#     conn.close()
+#     return redirect('/orders')
 
 
 # MODIFY ORDER
